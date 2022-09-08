@@ -358,6 +358,70 @@ Connected.
 SQL>
 
 
+=========================
+
+
+
+SQL> create sequence emp_seq start with 1 increment by 1 maxvalue 5;
+
+Sequence created.
+
+SQL> select * from emp;
+
+no rows selected
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','AAA');
+
+1 row created.
+
+SQL> select * from emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+         1 A                  35      34567 DEV     AAA
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','WW');
+
+1 row created.
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','CC');
+
+1 row created.
+
+SQL> select * from emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+         1 A                  35      34567 DEV     AAA
+         2 A                  35      34567 DEV     WW
+         3 A                  35      34567 DEV     CC
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','Agf');
+
+1 row created.
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','Agr');
+
+1 row created.
+
+SQL> select * from emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+         1 A                  35      34567 DEV     AAA
+         2 A                  35      34567 DEV     WW
+         3 A                  35      34567 DEV     CC
+         4 A                  35      34567 DEV     Agf
+         5 A                  35      34567 DEV     Agr
+
+SQL> insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','AWW');
+insert into emp values(emp_seq.nextval,'A',35,34567,'DEV','AWW')
+                       *
+ERROR at line 1:
+ORA-08004: sequence EMP_SEQ.NEXTVAL exceeds MAXVALUE and cannot be instantiated
+
+
+SQL>
 
 
 
