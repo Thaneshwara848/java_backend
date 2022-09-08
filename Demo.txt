@@ -161,6 +161,218 @@ truncate table emp;// it will dleete all the in recored in the  table but not ta
 drop table emp;
 
 
+
+
+
+
+SQL> create user suresh identified by tiger;
+
+User created.
+
+SQL> connect suresh/tiger;
+ERROR:
+ORA-01045: user SURESH lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect system/tiger;
+Connected.
+SQL> grant CREATE SESSION privilege to suresh;
+grant CREATE SESSION privilege to suresh
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> grant on  CREATE SESSION privilege to suresh;
+grant on  CREATE SESSION privilege to suresh
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> grant CREATE SESSION privilege on suresh;
+grant CREATE SESSION privilege on suresh
+      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> grant CREATE SESSION to suresh;
+
+Grant succeeded.
+
+SQL> connect suresh/tiger;
+Connected.
+SQL> select * from emp;
+select * from emp
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from system.emp;
+select * from system.emp
+                     *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect system/tiger;
+Connected.
+SQL> grant select on emp to suuresh;
+grant select on emp to suuresh
+                       *
+ERROR at line 1:
+ORA-01917: user or role 'SUURESH' does not exist
+
+
+SQL> grant select on emp to suresh;
+
+Grant succeeded.
+
+SQL> connect suresh/tiger;
+Connected.
+SQL> select * from system.emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+       900 Abi                35      25001 Clerk   V334
+       300 Bindu              35      25001 Dev     AV
+       400 Bindu              35      25001 Dev     AVW
+       500 Abi                35      25001 Dev     VWD14
+       600 Suresh             35      25001 Dev     VqD14
+       700 Pravin             35      25001 Clerk   W334
+
+6 rows selected.
+
+SQL> delete from system.emp where id = 300;
+delete from system.emp where id = 300
+                   *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect system/tiger;
+Connected.
+SQL> grant select,delete on emp to suresh;
+
+Grant succeeded.
+
+SQL> connect suresh/tiger;
+Connected.
+SQL> select * from system.emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+       900 Abi                35      25001 Clerk   V334
+       300 Bindu              35      25001 Dev     AV
+       400 Bindu              35      25001 Dev     AVW
+       500 Abi                35      25001 Dev     VWD14
+       600 Suresh             35      25001 Dev     VqD14
+       700 Pravin             35      25001 Clerk   W334
+
+6 rows selected.
+
+SQL> delete from system.emp where id = 300;
+
+1 row deleted.
+
+SQL> update system.emp set name='Charan' where id=500;
+update system.emp set name='Charan' where id=500
+              *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect system/tiger;
+Connected.
+SQL> grant update  on emp to suresh;
+
+Grant succeeded.
+
+SQL> connect suresh/tiger;
+Connected.
+SQL> select * from system.emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+       900 Abi                35      25001 Clerk   V334
+       400 Bindu              35      25001 Dev     AVW
+       500 Abi                35      25001 Dev     VWD14
+       600 Suresh             35      25001 Dev     VqD14
+       700 Pravin             35      25001 Clerk   W334
+
+SQL> delete from system.emp where id = 900;
+
+1 row deleted.
+
+SQL> update system.emp set name='Charan' where id=500;
+
+1 row updated.
+
+SQL> select * from system.emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+       400 Bindu              35      25001 Dev     AVW
+       500 Charan             35      25001 Dev     VWD14
+       600 Suresh             35      25001 Dev     VqD14
+       700 Pravin             35      25001 Clerk   W334
+
+SQL> connect system/tiger;
+Connected.
+SQL> grant all privileges to suresh;
+
+Grant succeeded.
+
+SQL> connect system/tiger;
+Connected.
+SQL> select * from system.emp;
+
+        ID NAME              AGE     SALARY DESIG   PAN
+---------- ---------- ---------- ---------- ------- ------
+       400 Bindu              35      25001 Dev     AVW
+       500 Charan             35      25001 Dev     VWD14
+       600 Suresh             35      25001 Dev     VqD14
+       700 Pravin             35      25001 Clerk   W334
+
+SQL> update system.emp set name='Charan' where id=500;
+
+1 row updated.
+
+SQL> connect system/tiger;
+Connected.
+SQL>  revoke all privileges from suresh;
+
+Revoke succeeded.
+
+SQL> connect suresh/tiger;
+ERROR:
+ORA-01045: user SURESH lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect system/tiger;
+Connected.
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		Types of SQL : 
 
 DDL : Data Defination lang 
@@ -178,15 +390,25 @@ DML : Data Manupulation lang
 DRL  : Data Retrival lang 
 	Select 
 
-DCL : Data Control lang 
-	Grant 
-	Revoke 
-
  
 TCL : trancation contorl lang 
 	Commit 
 	Rollback 
 	
+DCL : Data Control lang 
+	Grant 
+	Revoke 
+
+User : 
+ create user suresh identified by tiger;
+
+
+
+
+view :
+	create view emp_view as select id, name , desig from emp;
+	select * from  emp_view;
+
 
 Constrients
 	primary key : Only dif dif id  
@@ -210,23 +432,9 @@ create table emp
 	PAN varchar(6) unique
 )
 
-insert into  emp values('900','Abi',35,25001,'','VVD14');
+se
 
 insert into  emp(id,name,age,salary,pan) values('22','Abi',35,25001,'VVD4');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
