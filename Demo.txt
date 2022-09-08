@@ -1,0 +1,234 @@
+Core java : 
+	
+	basics : 
+			oprtatorr,: Ass , COnd , bit , logic 
+			 Data Types , Statemnets , looing , jumpinmg 
+	oops
+		:Class and Object 
+		: Inheritance : Single , Multi , Multple , Hibrid , Hyrichy 
+		: Polymorphis  : run / compil time 
+		: Encupulation  : Hinding data into single unit 
+		: Abastraction  : Hinding the implememntaion 
+
+
+	Exception Handle :
+			Checked  / compile / static 
+			Uncgheck  / run  /d ynimic binding 
+	Mullty Threading :
+				Thread 
+				Runnaable :
+	collection 
+					Collection 					Collections 
+				LIST 				SET 						MAP 
+
+				ArrayLIST 			Linked hashSet 					Likedhashmap 
+				LINKED LIST 		hashSet 						HashMap
+				vector 			TreeSet						Treemap 
+					Stack 									hashTable 
+
+						Compable , COmprator 
+
+
+	Data Strurectur:
+					LIST , SET , QUEE<, 
+	JUNIT  : Makito :
+					Execpt , actrual
+	Git :
+					init , add , push , pull , maerge , Clone , stach , stage , branch 
+
+
+
+	Maven :
+					
+				java 
+
+		J2SE
+		J2EE
+		J2ME
+
+Phase 2  : 
+		SQL 
+		JDBC 
+		J2EE
+			Servlet 	
+			JSP 
+
+		Spring 
+			core 
+			Hibernate 
+			MVC 
+								
+
+					J2EE : 
+							www.facebook.com
+							www.gamil.com
+							www,.youtube.com
+
+
+
+Full Stack : 						MEAN 								MERN  		
+
+
+Front End 
+
+	HTML 
+	CSS
+	JS 							Angualr .JS 						React .js 			
+
+			
+MiddelWarew 
+		java 						Express.Js 								Express.Js 
+
+		Python 
+		.net 
+	
+	Server : tomcat  						Node.js							Node.js			
+back End 
+
+	MySQL 						MongoDB							`MongoDB
+	oracle 
+
+
+
+
+html 
+css
+java and 
+	js  : 		Angaulr.js 
+				react.js 
+				node.js
+				express.js 
+				viw.js 
+				bACKBON.JS 
+				VENNILLA, JS 
+				Ember. js. ..
+				
+
+
+
+
+
+
+java : Server side
+
+js : clinet + server 
+
+
+Oracle 
+
+MYSQL 
+
+
+create databases batch6
+
+use batch6
+
+show tables 
+create table Emp(id int(5),Name varchar(10),Age int(2) ,desig varchar(10));
+select * from emp;
+ desc emp;
+select * from emp;
+
+insert into emp values(100,"Thanesh",25,"Dev");
+ insert into emp values(200,"Ramesh",35,"Manager");
+
+
+
+update emp set desig='Lead' where name='Thanesh';
+ update emp set desig='Lead',age=26 where name='Thanesh';
+
+> delete from emp where desig='Tester';
+ delete from emp where id=300;
+
+
+
+Create 
+update
+delete 
+insert 
+
+
+alter table emp Add(PAN number(6),AADAR number(4));
+alter table emp drop(PIN);
+alter table emp modify (age number(3));
+alter table emp rename column id to Aid;
+
+rename emp to employee;
+
+Select 
+truncate table emp;// it will dleete all the in recored in the  table but not table structure only recored 
+
+drop table emp;
+
+
+		Types of SQL : 
+
+DDL : Data Defination lang 
+ 
+	Drop
+	Rename
+	Create
+	Alter
+	Truncate
+DML : Data Manupulation lang 
+ 	U : update 
+	I  : Insert 
+	D : Delete 
+
+DRL  : Data Retrival lang 
+	Select 
+
+DCL : Data Control lang 
+	Grant 
+	Revoke 
+
+ 
+TCL : trancation contorl lang 
+	Commit 
+	Rollback 
+	
+
+Constrients
+	primary key : Only dif dif id  
+	not null    : we must have to enter the data 
+	Check       : it ther check the condation 
+	Unique       : diff diff values 
+	Default      : if i not enter any values default will take 
+	Forign key   : relater other table 
+
+
+
+
+
+create table emp 
+(
+	id number(5) primary key,
+	name varchar(10) not null,
+	Age number(3) check (age < 60),
+	salary number(8) check (salary > 25000),
+	Desig varchar(7) default 'GET',
+	PAN varchar(6) unique
+)
+
+insert into  emp values('900','Abi',35,25001,'','VVD14');
+
+insert into  emp(id,name,age,salary,pan) values('22','Abi',35,25001,'VVD4');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
