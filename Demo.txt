@@ -503,4 +503,236 @@ insert into  emp(id,name,age,salary,pan) values('22','Abi',35,25001,'VVD4');
 
 
 
+SQL  :
+Types of SQL 
+
+DDL
+DML
+DRL
+DCL
+TCL
+Constrients :
+	PK
+	Unieq
+	not nl
+	Check
+	Default
+	FK
+USER 		
+		Grant 
+		revokr
+View 	
+Sequenc
+
+Join 
+Sub queries 
+
+
+
+Join 
+
+
+ID name Age Desig Salary place
+
+
+
+
+Manager ; 
+	id name desig 
+
+HR : 
+	id name,Saalry , palce
+
+
+
+emp1  : id , 		name 	, age 
+	  1			ABi		25 
+	  2			Bindu 	38 
+	
+emp2
+
+	ID 	palce , Salary 
+	2	AP 		25k
+	1	UP		35 
+
+
+
+JIONs :
+		inner join 
+		outer join :full join , left join , right join 
+
+
+
+
+
+SQL> drop table emp1;
+
+Table dropped.
+
+SQL> drop table emp2 ;
+
+Table dropped.
+
+SQL> create table emp1 (id number(3) , name varchar(10) , Age number(2));
+
+Table created.
+
+SQL> create table emp1 (id number(3) , Place  varchar(10) , PIN number(6));
+create table emp1 (id number(3) , Place  varchar(10) , PIN number(6))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table emp2 (id number(3) , Place  varchar(10) , PIN number(6));
+
+Table created.
+
+SQL> desc emp1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ AGE                                                NUMBER(2)
+
+SQL> desc emp2 ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(3)
+ PLACE                                              VARCHAR2(10)
+ PIN                                                NUMBER(6)
+
+SQL> insert into emp1 values(1, 'ABI',25);
+
+1 row created.
+
+SQL> insert into emp1 values(2, 'ABI',25);
+
+1 row created.
+
+SQL> insert into emp1 values(3, 'ABI',25);
+
+1 row created.
+
+SQL> insert into emp1 values(4, 'ABI',25);
+
+1 row created.
+
+SQL> select * from emp1;
+
+        ID NAME              AGE
+---------- ---------- ----------
+         1 ABI                25
+         2 ABI                25
+         3 ABI                25
+         4 ABI                25
+
+SQL> insert into emp2 values(1, 'UP',25);
+
+1 row created.
+
+SQL> insert into emp2 values(2, 'AP',25);
+
+1 row created.
+
+SQL> insert into emp2 values(5, 'MP',25);
+
+1 row created.
+
+SQL> insert into emp2 values(6, 'BP',25);
+
+1 row created.
+
+SQL> select * from emp2;
+
+        ID PLACE             PIN
+---------- ---------- ----------
+         1 UP                 25
+         2 AP                 25
+         5 MP                 25
+         6 BP                 25
+
+SQL> select * from emp1;
+
+        ID NAME              AGE
+---------- ---------- ----------
+         1 ABI                25
+         2 ABI                25
+         3 ABI                25
+         4 ABI                25
+
+SQL> select * from emp2;
+
+        ID PLACE             PIN
+---------- ---------- ----------
+         1 UP                 25
+         2 AP                 25
+         5 MP                 25
+         6 BP                 25
+
+SQL> select * from emp1 full join emp2 ;
+select * from emp1 full join emp2
+                                 *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select * from emp1 full join emp2 on emp1.id= emp2.id ;
+
+        ID NAME              AGE         ID PLACE             PIN
+---------- ---------- ---------- ---------- ---------- ----------
+         1 ABI                25          1 UP                 25
+         2 ABI                25          2 AP                 25
+                                          5 MP                 25
+                                          6 BP                 25
+         4 ABI                25
+         3 ABI                25
+
+6 rows selected.
+
+SQL> select * from emp1 inner join emp2 on emp1.id= emp2.id ;
+
+        ID NAME              AGE         ID PLACE             PIN
+---------- ---------- ---------- ---------- ---------- ----------
+         1 ABI                25          1 UP                 25
+         2 ABI                25          2 AP                 25
+
+SQL> select * from emp1 left\ join emp2 on emp1.id= emp2.id ;
+select * from emp1 left\ join emp2 on emp1.id= emp2.id
+                       *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> select * from emp1 left join emp2 on emp1.id= emp2.id ;
+
+        ID NAME              AGE         ID PLACE             PIN
+---------- ---------- ---------- ---------- ---------- ----------
+         1 ABI                25          1 UP                 25
+         2 ABI                25          2 AP                 25
+         4 ABI                25
+         3 ABI                25
+
+SQL> select * from emp1 right join emp2 on emp1.id= emp2.id ;
+
+        ID NAME              AGE         ID PLACE             PIN
+---------- ---------- ---------- ---------- ---------- ----------
+         1 ABI                25          1 UP                 25
+         2 ABI                25          2 AP                 25
+                                          6 BP                 25
+                                          5 MP                 25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
